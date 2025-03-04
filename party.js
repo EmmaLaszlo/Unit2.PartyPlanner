@@ -46,27 +46,48 @@ function renderParties(parties) {
   });
 }
 
-// Make a function for submitting a new party - FORM
-
 // Add new party
 partyForm.addEventListener("submit", async (event) => {
-  // Listens for submission
-  event.preventDefault(); // so it doesn't reload
-  const name = document.getElementById("name").value; // enter party name
-  const date = document.getElementById("date").value; // enter the date
-  const location = document.getElementById("location").value; // enter the location
+  event.preventDefault();
+  const name = document.getElementById("name").value;
+  const description = document.getElementById("description").value;
+  const dateInput = document.getElementById("date").value;
+  const location = document.getElementById("location").value;
 
-  // Send it to the API via "POST"
+  if (!dateInput) {
+    console.error("Date input is missing!");
+    return;
+  }
+
+  // date is in a valid format before sending it
+  let formattedDate;
+  try {
+    formattedDate = new Date(dateInput).toISOString(); // Convert
+  } catch (error) {
+    console.error("Invalid date format:", error);
+    return;
+  }
+
   try {
     const response = await fetch(API_URL, {
       method: "POST",
-      headers: { "Content-Type": "application/json" }, // literally just took this from the lecture repo
-      body: JSON.stringify({ name, date, location }), // format the data as a string
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        description,
+        date: formattedDate,
+        location,
+      }),
     });
+
+    const responseData = await response.json();
+    console.log("POST Response:", responseData);
 
     if (response.ok) {
       fetchParties();
-      partyForm.reset(); // looked this part up but basically it resets the form so users can enter a new party, no need to delete previous info
+      partyForm.reset();
+    } else {
+      console.error("Error adding party:", responseData);
     }
   } catch (error) {
     console.error("Error adding party:", error);
