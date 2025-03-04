@@ -1,0 +1,63 @@
+/* General page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    margin: 20px;
+    padding: 20px;
+  }
+  
+  /* Headings */
+  h1 {
+    color: #333;
+    text-align: center;
+  }
+
+  h2 {
+    color: #333;
+    text-align: center;
+  }
+  
+  /* Form  */
+  form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  input {
+    padding: 8px;
+    border: 1px solid #1100ff;
+    border-radius: 8px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Party list styling */
+  ul {
+    padding: 1px;
+    max-width: 500px;
+    margin: 0 auto ;
+  }
+  
+  li {
+    background: white;
+    padding: 0px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  li button {
+    background-color: red;
+    padding: 6px 10px;
+  }
+  
